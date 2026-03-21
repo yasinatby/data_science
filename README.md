@@ -10,55 +10,109 @@ YOLO-basierte Computer Vision App mit **Training** und **Detection** in 2 Docker
 
 ## Docker Container
 
-### 1. `train` - Modell trainieren
-```bash
-docker-compose up train
-```
-- Trainiert YOLO mit `dataset/`
-- Speichert beste Gewichte in `models/best.pt`
-- GPU wird automatisch erkannt
+**Wichtig:** Wähle die richtige Datei für dein System!
 
-### 2. `web` - Detection Webapp
-```bash
-docker-compose up web
-```
-- FastAPI Webserver auf http://localhost:8000
-- Videos hochladen → Detection läuft
-- Ergebnisse in `outputs/`
-
-## Quick Start
-
-**Lokal (ohne Docker):**
-```bash
-pip install -r requirements.txt
-python src/train.py                    # Training
-python src/detect_video.py --source video.mp4  # Detection
-```
-
-**Mit Docker - Mac M2/M1:**
+### Mac M2/M1 (CPU-only)
 ```bash
 docker-compose -f docker-compose.mac.yaml up --build
 ```
 
-**Mit Docker - Windows/Linux mit RTX GPU:**
+### Windows/Linux mit RTX GPU
 ```bash
 docker-compose -f docker-compose.win.yaml up --build
 ```
 
-**Container herunterfahren:**
+### Services starten (einzeln)
+
+**Training Container:**
 ```bash
-# Beide Container stoppen und löschen
+docker-compose -f docker-compose.win.yaml up train
+```
+- Trainiert YOLO mit Daten aus `dataset/`
+- Speichert beste Gewichte in `models/best.pt`
+- GPU wird automatisch erkannt (falls verfügbar)
+
+**Web Detection Server:**
+```bash
+docker-compose -f docker-compose.win.yaml up web
+```
+- FastAPI Webserver auf http://localhost:8000
+- Videos hochladen → YOLO Detection
+- Ergebnisse in `outputs/`
+
+## Quick Start
+
+### Lokal (ohne Docker):
+```bash
+pip install -r requirements.txt
+python src/train.py                    # Modell trainieren
+python src/detect_video.py             # Video Detection
+```
+
+### Mit Docker (entscheide anhand deines Systems):
+
+**Mac M2/M1:**
+```bash
+docker-compose -f docker-compose.mac.yaml up --build
+```
+
+**Windows/Linux mit NVIDIA GPU:**
+```bash
+docker-compose -f docker-compose.win.yaml up --build
+```
+
+### Container verwalten:
+
+**Stoppen & löschen:**
+```bash
 docker-compose -f docker-compose.mac.yaml down
 docker-compose -f docker-compose.win.yaml down
+```
 
-# Nur stoppen (ohne zu löschen)  
+**Nur stoppen (nicht löschen):**
+```bash
 docker-compose -f docker-compose.mac.yaml stop
 docker-compose -f docker-compose.win.yaml stop
 ```
 
-## Anforderungen
-- Python 3.10 + CUDA 12.8 (optional für GPU)
+**Wieder starten:**
+```bash
+docker-compose -f docker-compose.mac.yaml start
+docker-compose -f docker-compose.win.yaml start
+```
+
+### Training im Container starten:
+```bash
+docker exec data_science-train-1 python src/train.py
+```
+
+### Logs ansehen:
+```bash
+docker-compose -f docker-compose.win.yaml logs web
+docker-compose -f docker-compose.win.yaml logs train
+```
+
+### In Container gehen (bash):
+```bash
+docker exec -it data_science-web-1 bash
+docker exec -it data_science-train-1 bash
+```
+
+## System Anforderungen
+
+**Lokal (ohne Docker):**
+- Python 3.10+
+- PyTorch (cpu oder gpu)
+- OpenCV, Ultralytics
+
+**Mit Docker:**
 - Docker + Docker Compose
+- Mac M2/M1: `docker-compose.mac.yaml` (CPU-only, funktioniert überall)
+- Windows/Linux + NVIDIA GPU: `docker-compose.win.yaml` (mit GPU-Support)
+- NVIDIA Container Toolkit (falls GPU gewünscht)
+
+**GPU optional:**
+Falls die RTX 3050 erkannt wird, beschleunigt sich Training um 3-5x
 
 ## Struktur
 ```
