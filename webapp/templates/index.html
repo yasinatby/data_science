@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>YOLO Video Detection</title>
+</head>
+<body>
+    <h1>YOLO Video Detection</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="video" accept="video/*" required>
+        <button type="submit">Hochladen und erkennen</button>
+    </form>
+
+    {% if result_path %}
+    <p>Verarbeitung abgeschlossen. Ausgabe gespeichert unter: {{ result_path }}</p>
+    {% endif %}
+</body>
+</html>
