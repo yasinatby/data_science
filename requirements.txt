@@ -1,5 +1,15 @@
-ultralytics
-flask
-opencv-python
-torch
-torchvision
+numpy==1.26.4
+opencv-python==4.9.0.80
+pandas==2.2.0
+pillow==12.1.1
+pydantic==2.6.1
+python-multipart==0.0.22
+PyYAML==6.0.1
+torch==2.2.0
+torchvision==0.17.0
+tqdm==4.66.3
+ultralytics==8.1.9
+
+# Web Framework
+fastapi==0.115.11
+uvicorn==0.29.0

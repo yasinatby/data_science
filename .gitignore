@@ -38,8 +38,11 @@ env/
 *.swo
 *~
 .DS_Store
+
+# Environment
 .env
 .env.local
+!.env.example
 
 # YOLO & ML Models (werden via Git LFS tracked)
 # models/best.pt wird getracked via Git LFS
