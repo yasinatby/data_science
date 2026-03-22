@@ -1,10 +1,9 @@
-
 services:
   web:
     build: .
     command: uvicorn webapp.app:app --reload --port=8000 --host=0.0.0.0
     ports:
-      - 8000:8000
+      - "8000:8000"
     working_dir: /app
     volumes:
       - ./outputs:/app/outputs
@@ -12,7 +11,14 @@ services:
       - ./videos:/app/videos
     environment:
       - PYTHONUNBUFFERED=1
-    
+    # Ersetzt 'runtime: nvidia' durch dieses Block:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
 
   train:
     build: .
@@ -24,4 +30,10 @@ services:
       - ./outputs:/app/outputs
     environment:
       - PYTHONUNBUFFERED=1
-    
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
