@@ -1,17 +1,12 @@
 services:
   web:
     build: .
-    command: uvicorn webapp.app:app --reload --port=8000 --host=0.0.0.0
     ports:
       - "8000:8000"
-    working_dir: /app
     volumes:
       - ./outputs:/app/outputs
       - ./models:/app/models
       - ./videos:/app/videos
-    environment:
-      - PYTHONUNBUFFERED=1
-    # Ersetzt 'runtime: nvidia' durch dieses Block:
     deploy:
       resources:
         reservations:
@@ -23,13 +18,10 @@ services:
   train:
     build: .
     command: /bin/bash -c "echo 'Train container ready' && tail -f /dev/null"
-    working_dir: /app
     volumes:
       - ./dataset:/app/dataset
       - ./models:/app/models
       - ./outputs:/app/outputs
-    environment:
-      - PYTHONUNBUFFERED=1
     deploy:
       resources:
         reservations:

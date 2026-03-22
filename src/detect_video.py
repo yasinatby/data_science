@@ -1,48 +1,43 @@
 from ultralytics import YOLO
 import cv2
+import torch
 from pathlib import Path
+
+#Hardware Detection 0 Nvdiea else Mac
+DEVICE = 0 if torch.cuda.is_available() else "cpu"
+print(f"🚀 Initialisiere Hardware: {DEVICE}")
 
 def detect_on_video(video_path, model_path="models/best.pt"):
     """
-    Perform object detection on video.
-    Yields annotated frames with detections.
-    
-    Args:
-        video_path: Path to input video
-        model_path: Path to YOLO model weights
-    
-    Yields:
-        Annotated frames with bounding boxes and labels
+    TODO: Implementiere die Objekterkennung.
+    Nutze 'DEVICE' beim Laden des Modells oder beim Predict-Aufruf.
     """
+    model = YOLO(model_path)
+
+    # results = model.track(source=str(video_path), stream=True, device=DEVICE)
     pass
 
 def annotate_frame(frame, results, model):
     """
-    Draw bounding boxes and labels on frame.
-    
-    Args:
-        frame: Input frame from video
-        results: YOLO detection results
-        model: YOLO model (for class names)
-    
-    Returns:
-        Annotated frame with boxes and labels
+    TODO: Zeichne Bounding Boxes und Labels manuell oder via YOLO auf das Frame.
     """
     pass
 
 def save_video_with_detections(input_path, output_path, model_path="models/best.pt"):
     """
-    Process video and save with detections.
-    
-    Args:
-        input_path: Path to input video
-        output_path: Path to save annotated video
-        model_path: Path to YOLO model weights
+    TODO: Lade das Video mit cv2.VideoCapture, loope durch die Frames,
+    rufe detect_on_video auf und speichere mit cv2.VideoWriter.
     """
     pass
 
 def main():
-    """CLI interface for video detection"""
+    """CLI interface für die Video-Erkennung"""
+   
+    input_vid = Path("videos/input.mp4")
+    output_vid = Path("outputs/result.mp4")
+    
+    print(f"Programm gestartet auf: {DEVICE}")
+    
     pass
 
 if __name__ == "__main__":
