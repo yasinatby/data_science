@@ -1,28 +1,23 @@
 # Git LFS Configuration
 # Install: brew install git-lfs (macOS) or apt install git-lfs (Linux)
-
 # Model files
 *.pt filter=lfs diff=lfs merge=lfs -text
 *.pth filter=lfs diff=lfs merge=lfs -text
 *.weights filter=lfs diff=lfs merge=lfs -text
 *.ckpt filter=lfs diff=lfs merge=lfs -text
 *.model filter=lfs diff=lfs merge=lfs -text
-
 # Video files
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.avi filter=lfs diff=lfs merge=lfs -text
 *.mov filter=lfs diff=lfs merge=lfs -text
-
 # Image files (große)
 *.jpg filter=lfs diff=lfs merge=lfs -text
 *.jpeg filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.gif filter=lfs diff=lfs merge=lfs -text
-
 # Data files
 *.pkl filter=lfs diff=lfs merge=lfs -text
 *.pickle filter=lfs diff=lfs merge=lfs -text
-
 # Text files (standard)
 *.py text eol=lf
 *.md text eol=lf
@@ -38,3 +33,4 @@ docker-compose.yml text eol=lf
 .gitignore text eol=lf
 .gitattributes text eol=lf
 *.sh text eol=lf
+videos/* filter=lfs diff=lfs merge=lfs -text
