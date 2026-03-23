@@ -44,11 +44,14 @@ env/
 .env.local
 !.env.example
 
-# YOLO & ML Models (werden via Git LFS tracked)
-# models/best.pt wird getracked via Git LFS
+outputs/            # Trainings-outputs
+runs/               # YOLO runs
+*.log               # Log files
 
-# Videos & Media (werden via Git LFS tracked)
-# Nur ignoriere temporäre Videos
+
+videos/uploaded.mp4
+
+
 videos/uploaded.mp4
 
 # Outputs & Results (temporäre Ergebnisse)

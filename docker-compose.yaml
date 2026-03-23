@@ -7,6 +7,7 @@ services:
       - ./outputs:/app/outputs
       - ./models:/app/models
       - ./videos:/app/videos
+    shm_size: 4gb
     deploy:
       resources:
         reservations:
@@ -22,6 +23,7 @@ services:
       - ./dataset:/app/dataset
       - ./models:/app/models
       - ./outputs:/app/outputs
+    shm_size: 4gb
     deploy:
       resources:
         reservations:
