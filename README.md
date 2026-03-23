@@ -11,4 +11,21 @@ YOLO-basierte Computer Vision App mit **Training** und **Detection** in 2 Docker
 
 ## Docker 
 
-docker compose up
+docker compose 
+
+
+## Wichtige CMD
+
+Um Graphen zu visualisieren: 
+
+tensorboard --logdir ultralytics/runs # replace with 'runs' directory
+
+
+## Objekt Klassen für YOLO 
+
+0  Player
+1  Goalkeepers
+2  Referee
+3  Ball
+4  Goal
+5  Corner
