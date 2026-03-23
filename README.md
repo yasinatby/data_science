@@ -27,5 +27,5 @@ tensorboard --logdir ultralytics/runs # replace with 'runs' directory
 1  Goalkeepers
 2  Referee
 3  Ball
-4  Goal
-5  Corner
+4  Corner
+5  Goal
